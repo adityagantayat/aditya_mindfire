@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="regForm">
+        <h1>Registration</h1>
+    </div>
+    <div class="main">
+        <form>
+            <div id="name">
+                <h2 class="name">Name</h2>
+                <input class="fullName" type="text" name="fullName"><br> 
+                <label class="nameLabel">Full Name</label>
+            </div>
+            <h2 class="name">Company</h2>
+            <input class="company" type="text" name="company">
+            <h2 class="name">Email</h2>
+            <input class="email" type="text" name="email">
+            <h2 class="name">Phone</h2>
+            <input class="code" type="text" name="areaCode">
+            <label class="areaCode">Area Code</label>
+            <input class="number" type="text" name="phone">
+            <label class="phoneNumber">Phone Number</label>
+
+            <h2 class="name">Course</h2>
+            <select class="option" name="course">
+                <option disabled="disabled" selected="selected">--Choose your course</option>
+                <option>Machine Learning</option>
+                <option>Robotics</option>
+                <option>Web Development</option>
+            </select>
+            <h2 id="student">Are you a beginner?</h2>
+            <input type="radio" id="yes" name="beginner" value="yes">
+            <label for="yes">yes</label><br>
+            <input type="radio" id="no" name="beginner" value="no">
+            <label for="no">No</label><br>
+
+            <button type="submit">Register</button>
+
+        </form>
+    </div>
+</body>
+</html>
