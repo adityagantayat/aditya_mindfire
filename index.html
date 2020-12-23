@@ -3,44 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <title>Registration Form</title>
 </head>
 <body>
-    <div class="regForm">
-        <h1>Registration</h1>
-    </div>
-    <div class="main">
+    <div class="container">
         <form>
-            <div id="name">
-                <h2 class="name">Name</h2>
-                <input class="fullName" type="text" name="fullName"><br> 
-                <label class="nameLabel">Full Name</label>
+            <h2 class="heading1">Please Register Yourself Here!</h2>
+            <div class="fullName">
+                <div class="inputField">
+                    <label for="firstName"> First Name :</label><span class="requiredField"> *</span>
+                    <input type="text" name="firstName" id="firstName" placeholder="First Name">
+                </div>
+                <div class="inputField">
+                    <label for="lastName"> Last Name :</label><span class="requiredField"> *</span>
+                    <input type="text" name="lastName" id="lastName" placeholder="First Name">
+                </div>           
             </div>
-            <h2 class="name">Company</h2>
-            <input class="company" type="text" name="company">
-            <h2 class="name">Email</h2>
-            <input class="email" type="text" name="email">
-            <h2 class="name">Phone</h2>
-            <input class="code" type="text" name="areaCode">
-            <label class="areaCode">Area Code</label>
-            <input class="number" type="text" name="phone">
-            <label class="phoneNumber">Phone Number</label>
-
-            <h2 class="name">Course</h2>
-            <select class="option" name="course">
-                <option disabled="disabled" selected="selected">--Choose your course</option>
-                <option>Machine Learning</option>
-                <option>Robotics</option>
-                <option>Web Development</option>
-            </select>
-            <h2 id="student">Are you a beginner?</h2>
-            <input type="radio" id="yes" name="beginner" value="yes">
-            <label for="yes">yes</label><br>
-            <input type="radio" id="no" name="beginner" value="no">
-            <label for="no">No</label><br>
-
-            <button type="submit">Register</button>
-
+            <div class="inputField">
+                <label for="email"> Email :</label><span class="requiredField"> *</span>
+                <input type="text" name="email" id="email" placeholder="yourname@example.com" required>
+            </div>
+            <div class="inputField">
+                <label for="password"> Password :</label><span class="requiredField"> *</span>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+            </div>
+            <div class="inputField">
+                <label for="phoneNumber">Phone Number :</label><span class="requiredField"> *</span>
+                <input type="number" name="phoneNumber" id="phoneNumber" placeholder="Phone Number" required>
+            </div>
+            <div class="inputField">
+                <label for="dob">Date Of Birth :</label><span class="requiredField"> *</span>
+                <input type="date" name="dob" id="dob">
+            </div>
+            <div class="inputField">
+                <label for="gender">Gender :</label> <span class="requiredField"> *</span>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male </label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female </label>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">Other </label>
+            </div>
+            <div class="inputField">
+                <label for="course">Select Course :</label> <span class="requiredField"> *</span>
+                <select name="course" id="course">
+                    <option disabled="disabled" selected="selected">-- Choose Course --</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="JS">JavaScript</option>
+                </select>
+            </div>   
+            <div class="inputField"> 
+                <label for="profilePic">Upload Your Avatar :</label> <span class="requiredField"> *</span>
+                <input type="file" name="profilePic" id="profilePic">
+            </div>
+            <div class="formAction">
+                <button type="submit" name="submit" id="submit">Submit</button>
+                <button type="cancel" name="cancel" id="cancel">Cancel</button>
+            </div>
         </form>
     </div>
 </body>
