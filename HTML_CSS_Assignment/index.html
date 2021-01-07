@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Assets/Style/index.css">
+    <title>Registration Form</title>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <h2 class="heading1">Please Register Yourself Here!</h2>
+            <div class="fullName">
+                <div class="inputField">
+                    <label for="firstName"> First Name :</label><span class="requiredField"> *</span>
+                    <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
+                </div>
+                <div class="inputField">
+                    <label for="lastName"> Last Name :</label><span class="requiredField"> *</span>
+                    <input type="text" name="lastName" id="lastName" placeholder="Last Name" required>
+                </div>           
+            </div>
+            <div class="inputField">
+                <label for="email"> Email :</label><span class="requiredField"> *</span>
+                <input type="text" name="email" id="email" placeholder="yourname@example.com" required>
+            </div>
+            <div class="inputField">
+                <label for="password"> Password :</label><span class="requiredField"> *</span>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+            </div>
+            <div class="inputField">
+                <label for="phoneNumber">Phone Number :</label><span class="requiredField"> *</span>
+                <input type="number" name="phoneNumber" id="phoneNumber" placeholder="Phone Number" required>
+            </div>
+            <div class="inputField">
+                <label for="dob">Date Of Birth :</label><span class="requiredField"> *</span>
+                <input type="date" name="dob" id="dob">
+            </div>
+            <div class="inputField">
+                <label for="gender">Gender :</label> <span class="requiredField"> *</span>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male </label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female </label>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">Other </label>
+            </div>
+            <div class="inputField">
+                <label for="course">Select Course :</label> <span class="requiredField"> *</span>
+                <select name="course" id="course">
+                    <option disabled selected>-- Choose Course --</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="JS">JavaScript</option>
+                </select>
+            </div>   
+            <div class="inputField">
+                <label>Select the languages you are comfortable with:</label><br>
+                <input type="checkbox" id="language1" name="language1" value="Java">
+                <label for="language1">Java</label><br>
+                <input type="checkbox" id="language2" name="language2" value="Python">
+                <label for="language2">Python</label><br>
+                <input type="checkbox" id="language3" name="language3" value="C">
+                <label for="language3">C</label><br>
+                <input type="checkbox" id="language4" name="language4" value="C++">
+                <label for="language4">C++</label><br>
+            </div>   
+            <div class="inputField"> 
+                <label for="profilePic">Upload Your Avatar :</label> <span class="requiredField"> *</span>
+                <input type="file" name="profilePic" id="profilePic">
+            </div>
+            <div class="formAction">
+                <button type="submit" name="submit" id="submit">Submit</button>
+                <button type="cancel" name="cancel" id="cancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
