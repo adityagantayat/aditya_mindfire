@@ -1,0 +1,112 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+.confirmPassword{
+    margin-left: 18%;
+}
+.dataTable{
+    width: 100%;
+    display: none;
+
+}
+.dataTable tr:nth-child(even){
+    background-color: #f2f2f2;
+    padding: 10%;
+}
+.email{
+    padding-right: 300px;
+}
+.errorMsg{
+    display: none; 
+    color: #E74C3C;
+}
+.errorMsgDiv{
+    display: flex;
+}
+.gridContainer{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.inputDiv{
+    margin-bottom: 10px;
+}
+input:hover{
+    background-color: #f1f1f1;
+}
+.inputStyle{
+    margin-top: 3px;
+    background-color: #f7f4f3;
+    border-radius: 5px 5px 5px 5px;
+    border-color: antiquewhite;
+    margin-bottom: 2%;
+    padding:10px;
+    padding-right: 45px;
+    margin-right: 20px;
+}
+.myLabel{
+    margin-top: 10px;
+}
+.lastNameErrorMsg{
+    margin-left: 55%;
+    width: max-content;
+}
+.navBar{
+    background-color: #34495E;
+    height: 50px;
+    color: whitesmoke;
+    margin-top: -20px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.navHead{
+    padding: 15px;
+}
+.phoneNumber2{
+    margin-left: 14%;
+}
+.regHead{
+    color: #34495E;
+    font-size: 2em;
+}
+.requiredSign{
+    color: #E74C3C;
+}
+.regSubHead{
+    margin-top: 0.25%;
+    color: #34495E;
+    font-weight: bold;
+}
+section > div{
+    margin-bottom:10px;
+}
+.sectionBody{
+    margin-top: 3%;
+    margin-left: 3%;
+}
+.submitBtn{
+    padding: 1%;
+    margin-left: 20%;
+    margin-top: 2%;
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: lemonchiffon;
+    font-size: 1em;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 10px 10px 10px 10px;
+}
+.tableHeader{
+    height: 37px; 
+    text-align: left;
+    background-color: #34495E;
+    color: white;
+
+}
+.tableRow{
+    width: 38px;
+}
+
+
+
+

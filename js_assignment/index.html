@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Register Yourself!</title>
+    <link rel="icon" href="https://img.pngio.com/png-icon-164327-free-icons-library-png-icon-1200_1238.jpg" >
+</head>
+<body>
+    <header>
+        <nav class="navBar">
+            <h1 class="navHead">IT World Education</h1>
+        </nav>
+    </header>
+    <section class= "sectionBody">
+        <div class="headMsg secDiv">
+            <h1 class="regHead">Register yourself here!</h1>
+            <p class="regSubHead">It's quick and easy.</p>
+        </div>
+        <div class="gridContainer">
+        <div class="gridItem">
+            <form action="" id="myform">
+                  <div class="inputDiv">
+                    <label class="myLabel" for="firstName">Name :</label><span class="requiredSign"> *</span>
+                    <br>
+                    <input type="text" id="firstName" class="inputStyle" name="firstName" placeholder="First Name"  onblur="inputFirstName('firstName')" maxlength="15"  />
+                    <input type="text" id="lastName" class="inputStyle" name ="lastName" placeholder="Last Name"  onblur="inputLastName('lastName')" maxlength="15"  />
+                    <br>
+                    <div class="errorMsgDiv">
+                        <small><span class="errorMsg" id="firstNameErrorMsg" class="firstNameErrorMsg" >Please enter only Alphabets</span></small>
+                        <small><span class="errorMsg" id="lastNameErrorMsg" class="lastNameErrorMsg" >Please enter only Alphabets</span></small>
+                    </div>
+                  </div>
+                <div class="inputDiv">
+                    <label class="myLabel" for="email">E-mail :</label><span class="requiredSign"> *</span>
+                    <br>
+                    <input type="email" id="email" class="inputStyle" name ="email" placeholder="yourname@example.com" onblur="validateEmail('email')"  maxlength="50"  />
+                    <small><span class="errorMsg" id="emailErrorMsg" >Invalid email type</span></small>
+                </div>
+                <div class="inputDiv">
+                    <label class="myLabel" for="password">Password :</label><span class="requiredSign"> *</span>
+                    <label for="confirmPassword" class="confirmPassword myLabel" >Confirm Password :</label><span class="requiredSign"> *</span>
+                    <br>
+                    <input type="password" id="password" class="inputStyle"  name ="password" placeholder="Password"   maxlength="15"  />
+                    <input type="password" id="confirmPassword" class="inputStyle"  name ="confirmPassword" placeholder="Confirm your Password" onblur="passwordValidation()"   maxlength="15"  />
+                    <small><span class="errorMsg" id="passwordErrorMsg" >Length should be within 6-12 characters(One upper case and one special character at least)</span></small>
+                    <small><span class="errorMsg" id="confirmPasswordErrorMsg" >Password mismatch</span></small>
+                </div>
+                <div class="inputDiv">
+                    <label class="myLabel" for="dateOfbirth">Date Of Bith</label><span class="requiredSign"> *</span>
+                    <br>
+                    <input type="date" class="inputStyle" id="dateOfbirth" onblur="dateOfBirthValidation()" />
+                    <small><span class="errorMsg" id="dobErrorMsg" >Fill up your Date of Birth</span></small>
+                    <small><span class="errorMsg" id="ageErrorMsg" >Eligibility: Born on or before 2004</span></small>
+                </div>
+                <div class="inputDiv">
+                    <label class="myLabel" for="phoneNumber2">Phone Number 1</label><span class="requiredSign"> *</span>
+                    <label for="phoneNumber2" class="phoneNumber2 myLabel" id="phoneNumber2">Alternate Phone Number</label>
+                    <br>
+                    <input type="text" id="phoneNumber1" name ="phoneNumber1" class="inputStyle" placeholder="91XXXXXX84" onblur="phoneNumber('phoneNumber1')" maxlength="10"  />
+                    <input type="text" id="phoneNumber2" name ="phoneNumber2" class="inputStyle" placeholder="71XXXXXX84"  maxlength="10" />
+                    <small>
+                        <span class="errorMsg" id="phoneErrorMsg1" >Please enter only Numbers</span>
+                        <span class="errorMsg" id="phoneErrorMsg2" >Your phone number should be of length 10</span>
+                    </small>
+                    
+                </div>
+                <div class="inputDiv">
+                    <label class="myLabel" for="gender">Gender</label><span class="requiredSign"> *</span>
+                    <div>
+                        <input type="radio" name="gender" class="inputStyle" value="male" id="male" />
+                        <label class="myLabel" for="male">Male</label> 
+                        <input type="radio" name="gender" class="inputStyle" value="female" id="female" />
+                        <label class="myLabel" for="female">Female</label> 
+                        <input type="radio" name="gender" class="inputStyle" value="other" id="other" />
+                        <label class="myLabel" for="other">Other</label>
+                    </div> 
+                    <small><span class="errorMsg" id="genderErrorMsg" >Select Gender</span></small>  
+                </div>
+                <div class="inputDiv">
+                    <label class="myLabel">Select the languages you are comfortable with:</label> <span class="requiredSign"> *</span>
+                    <br>
+                    <br>
+                    <input type="checkbox" id="language1" class="inputStyle" name="language" value="Java">
+                    <label class="myLabel" for="language1">Java</label><br>
+                    <input type="checkbox" id="language2" class="inputStyle" name="language" value="Python">
+                    <label class="myLabel" for="language2">Python</label><br>
+                    <input type="checkbox" id="language3" class="inputStyle" name="language" value="C">
+                    <label class="myLabel" for="language3">C</label><br>
+                    <input type="checkbox" id="language4" class="inputStyle" name="language" value="C++">
+                    <label class="myLabel" for="language4">C++</label><br>
+                    <small><span class="errorMsg" id="languageErrorMsg" >Select at least one language</span></small> 
+                    
+                </div>   
+                <div class="inputDiv">
+                    <label class="myLabel" for="course">Select Course :</label> <span class="requiredSign"> *</span>
+                    <select name="course" class="inputStyle" id="course">
+                        <option class="inputStyle" disabled selected value="">-- Choose Course --</option>
+                        <option class="inputStyle" value="HTML">HTML</option>
+                        <option class="inputStyle" value="CSS">CSS</option>
+                        <option class="inputStyle" value="JS">JavaScript</option>
+                    </select>
+                    <small><span class="errorMsg" id="courseErrorMsg" >Select atleast one course.</span></small>  
+                </div>
+              
+                <button type="button" class="submitBtn" id="submit" onclick="validateForm()">Submit</button>
+            </form>
+        </div>
+        <div class="displayData gridItem">
+            <table class="dataTable" id="dataTable">
+                <tr class="tableHeader">
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                </tr>
+            </table>
+        </div>
+        </div>
+    </section>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
