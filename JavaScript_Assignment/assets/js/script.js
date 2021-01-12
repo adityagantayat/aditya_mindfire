@@ -1,8 +1,11 @@
-var tableRowCount = 1;
+// var tableRowCount = 1;
+var regArray=[];
+var selectedIndex=-1;
+// change to block letters
 function changeToUpper(mystr){
     mystr.value=mystr.value.toUpperCase();
-    // formProgress(10)
 }
+// check for first name
 function inputFirstName(nameValue){
     document.getElementById("firstNameErrorMsg").style.display = "None";
     if(!/^[a-zA-Z]+$/.test(document.getElementById(nameValue).value))
@@ -12,6 +15,7 @@ function inputFirstName(nameValue){
     changeToUpper(document.getElementById(nameValue));
     
 }
+// check for last name
 function inputLastName(nameValue){
     document.getElementById("lastNameErrorMsg").style.display = "None";
     if(!/^[a-zA-Z]+$/.test(document.getElementById(nameValue).value))
@@ -21,6 +25,7 @@ function inputLastName(nameValue){
     changeToUpper(document.getElementById(nameValue));
     
 }
+// check for a valid phone number
 function phoneNumber(phoneNumberValue){
     document.getElementById("phoneErrorMsg1").style.display = "None";
     document.getElementById("phoneErrorMsg2").style.display = "None";
@@ -32,49 +37,50 @@ function phoneNumber(phoneNumberValue){
         document.getElementById("phoneErrorMsg2").style.display = "Block";
     }
 }
-function validateEmail(mail) 
-{
-    document.getElementById("emailErrorMsg").style.display = "None";
- if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById(mail).value))
-  {
+// check for a valid email id
+function validateEmail(mail) {
+ document.getElementById("emailErrorMsg").style.display = "None";
+ if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById(mail).value)) {
     document.getElementById("emailErrorMsg").style.display = "Block";
   }
 
 }
-function passwordLengthCheck(){
+// check the characters and length of the password
+function passwordLengthCheck() {
     document.getElementById("passwordErrorMsg").style.display = "None";
-    if(!/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,12}$/.test(document.getElementById("password").value)){
+    if(!/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,12}$/.test(document.getElementById("password").value)) {
         
     document.getElementById("passwordErrorMsg").style.display = "Block";
 
     }
     
 }
-function passwordValidation(){
-    // document.getElementById("confirmPasswordErrorMsg").textContent="";
-    
+// check if both passwords match
+function passwordValidation() {    
     document.getElementById("confirmPasswordErrorMsg").style.display = "None";
-    if(document.getElementById("password").value!=document.getElementById("confirmPassword").value){
+    if(document.getElementById("password").value!= document.getElementById("confirmPassword").value) {
         document.getElementById("confirmPasswordErrorMsg").style.display = "Block";
     }   
-
 }
-function dateOfBirthValidation(){
+// validate date of birth
+function dateOfBirthValidation() {
     document.getElementById("dobErrorMsg").style.display="None";
-    if(document.getElementById("dateOfbirth").value.length===0){
+    if(document.getElementById("dateOfbirth").value.length===0) {
         document.getElementById("dobErrorMsg").style.display="Block";
     }
-    else{
+    else {
         var y=parseInt(document.getElementById("dateOfbirth").value.substring(0,4));
         if(y>2004){
             document.getElementById("ageErrorMsg").style.display="Block";
         }
+        else{
+            document.getElementById("ageErrorMsg").style.display="None";
+
+        }
     }
 }
 
-
-
-
+// check all the fields before submission
 
 function validateForm(){
     var counter=0;
@@ -114,7 +120,7 @@ function validateForm(){
     }   
     
     
-    // dateOfBirthValidation();
+    dateOfBirthValidation();
     if(document.getElementById("dateOfbirth").value.length===0){
         document.getElementById("dobErrorMsg").style.display="Block";
         document.getElementById("dobErrorMsg").textContent="Fill up your Date of Birth";
@@ -124,8 +130,12 @@ function validateForm(){
         var y=parseInt(document.getElementById("dateOfbirth").value.substring(0,4));
         if(y>2004){
             document.getElementById("ageErrorMsg").style.display="Block";
+            counter+=1;
         }
-        counter+=1;
+        else{
+            document.getElementById("ageErrorMsg").style.display="None";
+
+        }
     }
 
     if(document.getElementById("course").value===""){
@@ -157,26 +167,85 @@ function validateForm(){
         submitOnSuccess();
         
     }
-    if(counter>0){
+    else {
         return 0;
     }
 }
+// Delete a record from the table
+function deleteTableRow(index){
+    regArray.splice(index,1);
+    localStorage.regRecord=JSON.stringify(regArray);
+    init();
+    
+}
+// edit a record from the table
+function editRow(index){
+    selectedIndex= index;
+    var newObj=regArray[index];
+    document.getElementById("firstName").value=newObj.firstname;
+    document.getElementById("lastName").value=newObj.lastname;
+    document.getElementById("phoneNumber1").value=newObj.contactnumber;
+    document.getElementById("email").value=newObj.email;
+    document.getElementById("password").value=newObj.password;
+    document.getElementById("confirmPassword").value=newObj.confirmpass;
+    document.querySelector('input[name="gender"]').value=newObj.gender;
+    document.getElementById(newObj.gender).checked= true;
+    document.querySelector('input[name="language"]').value=newObj.language;
+    document.getElementById(newObj.language).checked= true;
+    document.getElementById("dateOfbirth").value=newObj.dob;
+    document.getElementById("course").value=newObj.course;
+    document.getElementById("submit").innerHTML="Update";
+
+}
+// fetch the updated table
+function init(){
+    document.getElementById("tableRow").innerHTML="";
+    if(localStorage.regRecord){
+        regArray=JSON.parse(localStorage.regRecord);
+        for(var i=0; i<regArray.length; i++){
+            prepareTable(i,regArray[i].firstname,regArray[i].lastname,regArray[i].contactnumber,regArray[i].email)
+        }
+    }
+}
+// submit the form data and apppend it to the table
 function submitOnSuccess(){
         
     document.getElementById("dataTable").style.display = "Block";
-    var name = document.getElementById("firstName").value + " " + document.getElementById("lastName").value;
-    var contact = document.getElementById("phoneNumber1").value;
+    var firstName = document.getElementById("firstName").value ;
+    var lastName =  document.getElementById("lastName").value;
+    var contactNumber = document.getElementById("phoneNumber1").value;
     var email = document.getElementById("email").value;
-    var table= document.getElementsByClassName("dataTable")[0];
-    var newRow= table.insertRow(tableRowCount);
+    var gender=document.querySelector('input[name="gender"]:checked').value;
+    var lang=document.querySelector('input[name="language"]:checked').value;
+    var pass=document.getElementById("password").value;
+    var dob= document.getElementById("dateOfbirth").value;
+    var course=document.getElementById("course").value;
+    var regObj={firstname: firstName, lastname: lastName, contactnumber: contactNumber, email: email, gender: gender,language: lang, password: pass, confirmpass: pass, dob: dob,course: course};
+    if(selectedIndex===-1){
+        regArray.push(regObj);
+    }
+    else{
+        regArray.splice(selectedIndex,1,regObj);
+    }
+    localStorage.regRecord= JSON.stringify(regArray);
+    init();
+    
+    document.getElementById('myform').reset();
+    selectedIndex=-1;
+    document.getElementById("submit").innerHTML="Submit";
+    document.getElementsByClassName('errorMsg').display = "None";
+}
+// prepare the tble according to the updated data
+function prepareTable(index,firstName,lastName,contactNumber,email){
+    
+    var table= document.getElementById("tableRow");
+    var newRow= table.insertRow();
     var cell1=newRow.insertCell(0);
     var cell2=newRow.insertCell(1);
     var cell3=newRow.insertCell(2);
-    cell1.innerHTML=name;
-    cell2.innerHTML=contact;
+    var cell4=newRow.insertCell(3);
+    cell1.innerHTML=firstName+" "+lastName;
+    cell2.innerHTML= contactNumber;
     cell3.innerHTML=email;
-    tableRowCount+=1;
-
-    document.getElementById('myform').reset();
-    document.getElementsByClassName('errorMsg').display = "None";
+    cell4.innerHTML='<button class="btnEdit" onclick="editRow('+index+')">edit</button><button class="btnDelete"  onclick="deleteTableRow('+index+')">delete</button>';
 }

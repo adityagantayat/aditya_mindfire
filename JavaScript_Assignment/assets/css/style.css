@@ -2,13 +2,26 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
 }
-.confirmPassword{
-    margin-left: 18%;
-}
 .dataTable{
     width: 100%;
-    display: none;
+    /* display: none; */
 
+}
+.btnEdit{
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+}
+.btnDelete{
+    background-color: #dc3545;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-left: 2px;
 }
 .dataTable tr:nth-child(even){
     background-color: #f2f2f2;
@@ -63,7 +76,7 @@ input:hover{
     padding: 15px;
 }
 .phoneNumber2{
-    margin-left: 14%;
+    margin-left: 20%;
 }
 .regHead{
     color: #34495E;

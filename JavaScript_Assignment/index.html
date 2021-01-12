@@ -8,7 +8,7 @@
     <title>Register Yourself!</title>
     <link rel="icon" href="https://img.pngio.com/png-icon-164327-free-icons-library-png-icon-1200_1238.jpg" >
 </head>
-<body>
+<body onload="init()">
     <header>
         <nav class="navBar">
             <h1 class="navHead">IT World Education</h1>
@@ -41,22 +41,26 @@
                 </div>
                 <div class="inputDiv">
                     <label class="myLabel" for="password">Password :</label><span class="requiredSign"> *</span>
+                    <br>
+                    <input type="password" id="password" class="inputStyle"  name ="password" placeholder="Password"  onblur="passwordLengthCheck()"  maxlength="15"  />
+                    <small><span class="errorMsg" id="passwordErrorMsg" >Length should be within 6-12 characters(One digit and one special character at least)</span></small>
+                </div>
+                <div>
                     <label for="confirmPassword" class="confirmPassword myLabel" >Confirm Password :</label><span class="requiredSign"> *</span>
                     <br>
-                    <input type="password" id="password" class="inputStyle"  name ="password" placeholder="Password"   maxlength="15"  />
                     <input type="password" id="confirmPassword" class="inputStyle"  name ="confirmPassword" placeholder="Confirm your Password" onblur="passwordValidation()"   maxlength="15"  />
-                    <small><span class="errorMsg" id="passwordErrorMsg" >Length should be within 6-12 characters(One upper case and one special character at least)</span></small>
                     <small><span class="errorMsg" id="confirmPasswordErrorMsg" >Password mismatch</span></small>
+                    
                 </div>
                 <div class="inputDiv">
-                    <label class="myLabel" for="dateOfbirth">Date Of Bith</label><span class="requiredSign"> *</span>
+                    <label class="myLabel" for="dateOfbirth">Date Of Birth</label><span class="requiredSign"> *</span>
                     <br>
                     <input type="date" class="inputStyle" id="dateOfbirth" onblur="dateOfBirthValidation()" />
                     <small><span class="errorMsg" id="dobErrorMsg" >Fill up your Date of Birth</span></small>
                     <small><span class="errorMsg" id="ageErrorMsg" >Eligibility: Born on or before 2004</span></small>
                 </div>
                 <div class="inputDiv">
-                    <label class="myLabel" for="phoneNumber2">Phone Number 1</label><span class="requiredSign"> *</span>
+                    <label class="myLabel" for="phoneNumber1">Phone Number</label><span class="requiredSign"> *</span>
                     <label for="phoneNumber2" class="phoneNumber2 myLabel" id="phoneNumber2">Alternate Phone Number</label>
                     <br>
                     <input type="text" id="phoneNumber1" name ="phoneNumber1" class="inputStyle" placeholder="91XXXXXX84" onblur="phoneNumber('phoneNumber1')" maxlength="10"  />
@@ -83,14 +87,14 @@
                     <label class="myLabel">Select the languages you are comfortable with:</label> <span class="requiredSign"> *</span>
                     <br>
                     <br>
-                    <input type="checkbox" id="language1" class="inputStyle" name="language" value="Java">
-                    <label class="myLabel" for="language1">Java</label><br>
-                    <input type="checkbox" id="language2" class="inputStyle" name="language" value="Python">
-                    <label class="myLabel" for="language2">Python</label><br>
-                    <input type="checkbox" id="language3" class="inputStyle" name="language" value="C">
-                    <label class="myLabel" for="language3">C</label><br>
-                    <input type="checkbox" id="language4" class="inputStyle" name="language" value="C++">
-                    <label class="myLabel" for="language4">C++</label><br>
+                    <input type="checkbox" id="java" class="inputStyle" name="language" value="java">
+                    <label class="myLabel" for="java">Java</label><br>
+                    <input type="checkbox" id="python" class="inputStyle" name="language" value="python">
+                    <label class="myLabel" for="python">Python</label><br>
+                    <input type="checkbox" id="c" class="inputStyle" name="language" value="c">
+                    <label class="myLabel" for="c">C</label><br>
+                    <input type="checkbox" id="c++" class="inputStyle" name="language" value="c++">
+                    <label class="myLabel" for="c++">C++</label><br>
                     <small><span class="errorMsg" id="languageErrorMsg" >Select at least one language</span></small> 
                     
                 </div>   
@@ -110,11 +114,15 @@
         </div>
         <div class="displayData gridItem">
             <table class="dataTable" id="dataTable">
-                <tr class="tableHeader">
+                <thead>
+                    <tr class="tableHeader">
                     <th>Name</th>
                     <th>Contact</th>
                     <th>Email</th>
-                </tr>
+                    <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="dataTable" id="tableRow"></tbody>
             </table>
         </div>
         </div>
