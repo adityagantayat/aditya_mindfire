@@ -1,9 +1,9 @@
-$(document).ready(function () {
-    //Declarations
+//Declarations
 
-    // var tableRowCount = 1;
-    var regArray = [];
-    var selectedIndex = -1;
+var regArray = [];
+var selectedIndex = -1;
+
+$(document).ready(function () {
 
     $('.errorMsg').hide();
 
@@ -191,7 +191,8 @@ function editRow(index) {
     $("#" + newObj.language + "").attr('checked', true);
     $("#dateOfbirth").val(newObj.dob);
     $("#course").val(newObj.course);
-    $("#submit").HTML = "Update";
+    $("#submit").html("Update");
+    $("#submit").attr("class", "btn btn-primary");
 
 }
 // fetch the updated table(send the object data to the prepareTable() function)
@@ -228,16 +229,19 @@ function submitOnSuccess() {
     init();
 
     $('#myform').trigger("reset");
+    $('input[name="gender"]').prop('checked', false);
+    $('input[name="language"]').prop('checked', false);
     selectedIndex = -1;
-    $("#submit").HTML = "Submit";
+    $("#submit").html("Submit");
+    $("#submit").attr("class", "btn btn-success");
     $('.errorMsg').hide();
 }
 // prepare the tble according to the updated data
 function prepareTable(index, firstName, lastName, contactNumber, email) {
 
     $("#tableRow").append("<tr>");
-    $("#tableRow").append("<td scope='row'>" + firstName + " " + lastName + "<td>" + contactNumber + "<td>" + email);
-    $("#tableRow").append("<td>" + '<button class="btnEdit btn btn-primary btn-sm mr-1" onclick="editRow(' + index + ')">edit</button><button class="btnDelete btn btn-danger btn-sm"  onclick="deleteTableRow(' + index + ')">delete</button>');
+    $("#tableRow").append("<td scope='row'>" + firstName + " " + lastName + "</td><td>" + contactNumber + "</td><td>" + email);
+    $("#tableRow").append("</td><td>" + '<button class="btnEdit btn btn-primary btn-sm mr-1" onclick="editRow(' + index + ')">edit</button><button class="btnDelete btn btn-danger btn-sm"  onclick="deleteTableRow(' + index + ')">delete</button></td>');
 
 
 }
