@@ -31,7 +31,7 @@ $(document).ready(function () {
         if (!/^[0-9]+$/.test(this.value)) {
             $("#phoneErrorMsg1").show();
         }
-        if (this.value.length != 10) {
+        else if (this.value.length != 10) {
             $("#phoneErrorMsg2").show();
         }
     });
@@ -95,14 +95,22 @@ function validateForm() {
     }
     if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($("#email").val())) {
         $("#emailErrorMsg").show();
-        $("#emailErrorMsg").textContent = "Example= yourname@example.com ";
+        $("#emailErrorMsg").text("Example= yourname@example.com ");
         counter += 1;
     }
     if (!/^[0-9]+$/.test($("#phoneNumber1").val()) || $("#phoneNumber1").val().length != 10) {
         $("#phoneErrorMsg1").show();
-        $("#phoneErrorMsg1").textContent = "Phone number should be only digits and should be of length 10";
+        $("#phoneErrorMsg1").text("Phone number should be only digits and should be of length 10");
         counter += 1;
     }
+
+    if (!/^[0-9]{10}$/.test($("#phoneNumber2").val()) && $("#phoneNumber2").val() != "") {
+        $("#phoneErrorMsg1").show();
+        $("#phoneErrorMsg1").text("Alternative Phone number should be only digits and should be of length 10");
+        counter += 1;
+    }
+
+
     if (!/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,12}$/.test($("#password").val())) {
         // passwordText = "Password"
         $("#passwordErrorMsg").show();
@@ -170,20 +178,35 @@ function validateForm() {
 
 //Delete a record from the table based on a specific index
 function deleteTableRow(index) {
+    var tempObj = regArray[index];
     regArray.splice(index, 1);
     localStorage.regRecord = JSON.stringify(regArray);
     init();
+    if ($("#email").val() == tempObj.email) {
+        clearForm();
+    }
 
+}
+function clearForm() {
+    $('#myform').trigger("reset");
+    $('input[name="gender"]').attr('checked', false);
+    $('input[name="language"]').attr('checked', false);
+    $("#submit").html("Submit");
+    $("#submit").attr("class", "btn btn-success");
+    $('.errorMsg').hide();
 }
 // edit a record from the table based on a specific index
 function editRow(index) {
+    $('input[name="language"]').attr('checked', false);
+    $('input[name="gender"]').attr('checked', false);
     $('.errorMsg').hide();
-
+    $('#myform').trigger("reset");
     selectedIndex = index;
     var newObj = regArray[index];
     $("#firstName").val(newObj.firstname);
     $("#lastName").val(newObj.lastname);
     $("#phoneNumber1").val(newObj.contactnumber);
+    $("#phoneNumber2").val(newObj.altphone);
     $("#email").val(newObj.email);
     $("#password").val(newObj.password);
     $("#confirmPassword").val(newObj.confirmpass);
@@ -218,7 +241,8 @@ function submitOnSuccess() {
     var pass = $("#password").val();
     var dob = $("#dateOfbirth").val();
     var course = $("#course").val();
-    var regObj = { firstname: firstName, lastname: lastName, contactnumber: contactNumber, email: email, gender: gender, language: lang, password: pass, confirmpass: pass, dob: dob, course: course };
+    var altPhone = $("#phoneNumber2").val();
+    var regObj = { firstname: firstName, lastname: lastName, contactnumber: contactNumber, email: email, gender: gender, language: lang, password: pass, confirmpass: pass, dob: dob, course: course, altphone: altPhone };
     if (selectedIndex === -1) {
         regArray.push(regObj);
     }
@@ -227,14 +251,8 @@ function submitOnSuccess() {
     }
     localStorage.regRecord = JSON.stringify(regArray);
     init();
-
-    $('#myform').trigger("reset");
-    $('input[name="gender"]').prop('checked', false);
-    $('input[name="language"]').prop('checked', false);
+    clearForm();
     selectedIndex = -1;
-    $("#submit").html("Submit");
-    $("#submit").attr("class", "btn btn-success");
-    $('.errorMsg').hide();
 }
 // prepare the tble according to the updated data
 function prepareTable(index, firstName, lastName, contactNumber, email) {
