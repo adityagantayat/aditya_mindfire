@@ -1,3 +1,246 @@
-<p>
-  RegisterForm works!
-</p>
+<div class="row m-3">
+    <!-- Form Section -->
+    <div class="col-md-6">
+        <h3>Register yourself!</h3>
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label class="myLabel" for="firstName">Name :</label><span class=" text-danger"> *</span>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        <input type="text" formControlName="firstName" class="form-control" name="firstName"
+                            placeholder="First Name" maxlength="15" />
+                        <div *ngIf="(firstName?.invalid && firstName?.touched) ||isNotValid">
+                            <small class="text-danger" *ngIf="firstName?.errors?.required">First Name is
+                                required</small>
+                            <small class="text-danger" *ngIf="firstName?.errors?.pattern">Enter only alphabets.</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <input type="text" formControlName="lastName" class="form-control" name="lastName"
+                            placeholder="Last Name" maxlength="15" />
+                        <div *ngIf="(lastName?.invalid && lastName?.touched) ||isNotValid">
+                            <small class="text-danger" *ngIf="lastName?.errors?.required">Last Name is required</small>
+                            <small class="text-danger" *ngIf="lastName?.errors?.pattern">Enter only alphabets.</small>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="myLabel" for="email">E-mail :</label><span class=" text-danger"> *</span>
+                <br>
+                <input type="email" formControlName="email" class="form-control" name="email"
+                    placeholder="yourname@example.com" maxlength="50" />
+                <div *ngIf="(email?.invalid && email?.touched) ||isNotValid">
+                    <small class="text-danger" *ngIf="email?.errors?.required"> Email is required</small>
+                    <small class="text-danger" *ngIf="email?.errors?.pattern">Format: "yourname@example.com" </small>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        <label class="myLabel" for="password">Password :</label><span class=" text-danger">
+                            *</span>
+
+                        <input type="password" formControlName="password" class="form-control" name="password"
+                            placeholder="Password" maxlength="15" />
+                        <div *ngIf="(password?.invalid && password?.touched) ||isNotValid">
+                            <small class="text-danger" *ngIf="password?.errors?.required">Password is required</small>
+                            <small class="text-danger" *ngIf="password?.errors?.pattern">Length should be within 6-12
+                                characters(One
+                                digit and one special character at least)</small>
+                            
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <label for="confirmPassword" class="confirmPassword myLabel">Confirm Password
+                            :</label><span class=" text-danger"> *</span>
+                        <input type="password" formControlName="confirmPassword" class="form-control"
+                            name="confirmPassword" placeholder="Confirm your Password" maxlength="15" />
+                        <div *ngIf="confirmPassword?.touched ||isNotValid">
+                            <small class="text-danger" *ngIf="confirmPassword?.errors?.required">Password is
+                                required</small>
+                            <small class="text-danger" *ngIf="registrationForm.errors?.misMatch">Passwords do not
+                                match</small>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="myLabel" for="dateOfbirth">Date Of Birth</label><span class=" text-danger">
+                    *</span>
+                <br>
+                <input type="date" class="form-control" (change)="validateDOB()" name="dateOfbirth" formControlName="dateOfbirth" />
+                <div *ngIf="dateOfbirth?.touched ||isNotValid">
+                    <small class="text-danger" *ngIf="dateOfbirth?.errors?.required">Date of birth is required</small>
+                    <small class="text-danger" *ngIf="isEligible">Your age must be 12 years or greater</small>
+
+                </div>
+
+                <!-- <small><span class=" text-danger" id="age">Eligibility: Born on or before -->
+                <!-- 2004</span></small> -->
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        <label class="myLabel" for="phoneNumber1">Phone Number</label><span class=" text-danger">
+                            *</span>
+                        <input type="text" formControlName="phoneNumber1" name="phoneNumber1" class="form-control"
+                            placeholder="91XXXXXX84" maxlength="10" />
+                        <div *ngIf="phoneNumber1?.invalid && phoneNumber1?.touched">
+                            <small class="ml-3">
+                                <small class="text-danger" *ngIf="phoneNumber1?.errors?.required">Phone Number is
+                                    required</small>
+                                <small class="text-danger" *ngIf="phoneNumber1?.errors?.pattern">Please enter only
+                                    numbers of length 10</small>
+
+                            </small>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <label for="phoneNumber2" class="phoneNumber2 myLabel">Alternate
+                            Phone
+                            Number</label>
+                        <br>
+
+                        <input type="text" formControlName="phoneNumber2" name="phoneNumber2" class="form-control"
+                            placeholder="71XXXXXX84" maxlength="10" />
+                        <div *ngIf="phoneNumber2?.invalid && phoneNumber2?.dirty">
+                            <small class="ml-3">
+                                <small class="text-danger" *ngIf="phoneNumber2?.errors?.pattern">Please enter only
+                                    numbers of length 10</small>
+
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+            <div class="form-group">
+                <label class="myLabel" for="gender">Gender</label>
+                <span class=" text-danger">*</span>
+                <br>
+                <div class="form-check-inline">
+                    <label class="form-check-label" for="male">Male
+                        <input type="radio" formControlName="gender" class="form-check-input" value="male" id="male" />
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label" for="female">Female
+                        <input type="radio" formControlName="gender" class="form-check-input" value="female"
+                            id="female" />
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label" for="other">Other
+                        <input type="radio" formControlName="gender" class="form-check-input" value="other"
+                            id="other" />
+                    </label>
+                </div>
+                <br>
+                <div *ngIf="gender?.errors?.required && isNotValid">
+
+                    <small class=" text-danger" ng-show="gender?.errors?.required">Select gender</small>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="myLabel">Select the languages you are comfortable with:</label> <span
+                    class=" text-danger"> *</span>
+                <br>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="checkbox" id="java" class="form-check-input" formControlName="language1"
+                            value="java">
+                        Java
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="checkbox" id="python" class="form-check-input" formControlName="language2"
+                            value="python">
+                        Python
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="checkbox" id="c" class="form-check-input" formControlName="language3" value="c">
+                        C
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="checkbox" id="c++" class="form-check-input" formControlName="language4" value="c++">
+                        C++
+                    </label>
+                </div>
+                
+            </div>
+            <div class="form-group">
+                <label class="myLabel" for="course">Select Course :</label>
+                <span class=" text-danger">*</span>
+                <select formControlName="course" class="form-control" id="course">
+                    <option disabled selected value="">-- Choose Course --
+                    </option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="JS">JavaScript</option>
+                </select>
+                <div *ngIf="course?.errors?.required && isNotValid">
+
+                    <small class=" text-danger" ng-show="course?.errors?.required">Select course</small>
+
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success" *ngIf="!isUpdate" id="submit">Submit</button>
+            <button type="submit" *ngIf="isUpdate" class="btn btn-primary" id="submit">Update</button>
+        </form>
+    </div>
+    <!-- Table section -->
+    <div class="col-md-6">
+        <div class="mt-5">
+            <table class="table table-striped table-responsive bg-light">
+                <thead class="bg-info text-white">
+                    <tr>
+                        <th>SL No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr *ngFor="let user of usersData;let i=index;">
+                        <td scope="row">{{i+1}}</td>
+                        <td>{{user.firstName + " " +user.lastName}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.phoneNumber1}}</td>
+                        <td>
+                            <div class="container">
+                                <!-- <div class="col-md-6"> -->
+                                    <button class="btn btn-block btn-primary" (click)="editUserData(i)">Edit</button>
+                                <!-- </div> -->
+                                <!-- <div class="col-md-6"> -->
+                                    <button class="btn btn-block btn-danger " (click)="deleteUserData(i)">Delete</button>
+                                <!-- </div> -->
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

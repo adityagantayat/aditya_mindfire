@@ -4,17 +4,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterFormComponent } from './RegisterForm/RegisterForm.component';
+import { NavbarComponent } from './Navbar/Navbar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
-  declarations: [	
+  declarations: [			
     AppComponent,
-      RegisterFormComponent
+      RegisterFormComponent,
+      NavbarComponent
    ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
